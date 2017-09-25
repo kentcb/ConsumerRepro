@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Repro</AssemblyName>
+        <RootNamespace>Repro</RootNamespace>
+        <TargetFrameworks>netstandard1.3</TargetFrameworks>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <WarningsAsErrors>true</WarningsAsErrors>
+        <LangVersion>latest</LangVersion>
+
+        <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81</PackageTargetFallback>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Update="**\*.xaml.cs" DependentUpon="%(Filename)" />
+        <EmbeddedResource Include="**\*.xaml">
+            <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+
+        <None Remove="obj\**" />
+        <Compile Remove="obj\**" />
+        <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="reactiveui" Version="8.0.0-alpha0089" />
+        <PackageReference Include="System.Reactive" Version="3.1.1" />
+        <PackageReference Include="Xamarin.Forms" Version="2.3.4.270" />
+    </ItemGroup>
+
+</Project>
